@@ -1,2 +1,2 @@
 # MineProjectFlutter
-Um mine projeto que será desenvolvido na disciplina de Programação Orientada a Objetos I
+Repositorio destinado ao desenvolvimento de um mine projeto em flutter na disciplina de POO I.
