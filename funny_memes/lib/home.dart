@@ -4,7 +4,7 @@ import "package:flutter_animate/flutter_animate.dart";
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  @override
+  @overrideUpdate
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -12,18 +12,41 @@ class Home extends StatelessWidget {
           Center(
               child: Text(
             "",
-          ).animate().custom(
-                  duration: 3.seconds,
-                  begin: 0,
-                  end: 30,
-                  builder: (context, value, widget) {
-                    return Text(
-                      "FUNNY MEMES",
-                      style: TextStyle(
-                          fontSize: value,
-                          color: Color.fromARGB(255, 3, 18, 91)),
+          ).animate(    
+              )
+              .custom(
+                duration:3.seconds,
+                begin:0,
+                end:30,
+                builder:(context,value,widget){
+                  return Text(
+                    "FUNNY MEMES",
+                    style:TextStyle(fontSize:value,color:Colors.white)
                     );
-                  })),
+                }
+              ).animate(
+                onPlay:(Controler) => Controler.repeat()
+              )
+               .custom(
+                duration: 510.ms,
+                begin:0,
+                end:255,
+                builder:(context,value,child){
+                  return ShaderMask(
+                    shaderCallback: (rect){
+                        return RadialGradient(
+                          colors:<Color>[
+                            Color.fromARGB(255,value.toInt(),255,0),
+                            Color.fromARGB(255,255-value.toInt(),0,value.toInt())],
+                          tileMode: TileMode.clamp,
+                          radius: 3.0,
+                          center: Alignment.center,
+                        ).createShader(rect);
+                    },
+                    child:child
+                  );
+                }
+               )),
           Spacer(),
           Center(
               child: Text("NAVEGUE PELO MUNDO DOS MEMES",
