@@ -2,52 +2,68 @@ import "package:flutter/material.dart";
 import "components/bar.dart";
 import "api.dart";
 
-var api = Api();
 
-class Selection extends StatefulWidget {
+
+class Selection extends StatefulWidget{
   const Selection({super.key});
-  @override
+  @override 
   State<StatefulWidget> createState() => _Selection();
 }
 
-class _Selection extends State<Selection> {
-  final ValueNotifier<List> tableStateNotifier = ValueNotifier([<Widget>[]]);
-  @override
-  Widget build(BuildContext context) {
-    createItems();
-    return Scaffold(
-        appBar: const MyBar(),
-        body: SingleChildScrollView(
-          child: ValueListenableBuilder(
-              valueListenable: tableStateNotifier,
-              builder: (_, value, __) {
-                return Column(children: value[0]);
-              }),
-        ));
-  }
-
-  Future<void> createItems() async {
-    var list = await api.getMemes();
-    List<Widget> rows = [];
-    for (int x = 0; x <= 22; x++) {
-      List<Widget> row = [];
-      for (int y = 0; y <= 1; y++) {
-        row.add(IconMeme(url: list[x * 23 + y]["url"]));
-      }
-      rows.add(Row(children: row));
+class _Selection extends State<Selection>{
+  
+  @override 
+  void initState() {
+      api.value.getMemes();
+      super.initState();
     }
-    tableStateNotifier.value[0] = rows;
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar:MyBar(),
+      body:ListView.builder(
+        itemCount:100,
+        itemBuilder:(context,index){
+          var url = "";
+          var id = "";
+          if(api.value.memes.length > 1){
+            url = api.value.memes[index]["url"];
+            id = api.value.memes[index]["id"];
+          }
+          return ValueListenableBuilder(
+            valueListenable:api,
+            builder:(_, value, __){
+              return IconMeme(
+                url:url,
+                id:id
+                );
+              }
+            );
+        }
+      )
+    );
   }
 }
 
-class IconMeme extends StatelessWidget {
+class IconMeme extends StatelessWidget{
   final id;
   final url;
-  const IconMeme({super.key, this.id, this.url});
+  const IconMeme({super.key,this.id,this.url});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return GestureDetector(
-      child: Container(height: 50, width: 50, child: Image.network(url)),
+      child: Container(
+        child:Hero(
+          child: Image.network(url != "" ? url :"https:\/\/i.imgflip.com\/3umnr3.jpg"),
+          tag:id
+          )
+      ),
+      onTap:() {
+         api.value.choiceUrl = url;
+         api.value.choiceId = id;
+         Navigator.pushNamed(context,"/edit");
+         }
     );
   }
 }
