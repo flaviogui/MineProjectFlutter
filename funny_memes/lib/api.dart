@@ -1,10 +1,15 @@
+import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+final ValueNotifier<Api> api = ValueNotifier(Api());
+
 class Api{
+  List<dynamic> memes = [];
+  String choiceUrl = "";
+  String choiceId = "";
   
-  
-  Future<List<dynamic>> getMemes() async{
+  Future<void> getMemes() async{
     Uri uriGet = Uri(
       scheme:"https",
       host:"api.imgflip.com",
@@ -13,7 +18,7 @@ class Api{
     String jsonString = await http.read(uriGet);
     print(jsonString); 
     var retorno = jsonDecode(jsonString);
-    return retorno["data"]["memes"];
+    memes = retorno["data"]["memes"];
   }
 
 }
