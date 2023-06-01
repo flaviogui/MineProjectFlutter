@@ -14,11 +14,13 @@ class _Selection extends State<Selection> {
   List<Widget> items = [];
   @override
   Widget build(BuildContext) {
-    items.add(TextButton(
+    createItems();
+    /*   items.add(TextButton(
         child: Text("apertar aqui"),
         onPressed: () => setState(() {
               createItems();
             })));
+      */
     return Scaffold(
         appBar: const MyBar(),
         body: SingleChildScrollView(child: Column(children: items)));
@@ -27,10 +29,10 @@ class _Selection extends State<Selection> {
   Future<void> createItems() async {
     var list = await api.getMemes();
     List<Widget> rows = [];
-    for (int x = 0; x <= 10; x++) {
+    for (int x = 0; x <= 22; x++) {
       List<Widget> row = [];
       for (int y = 0; y <= 1; y++) {
-        row.add(IconMeme(url: list[x * 5 + y]["url"]));
+        row.add(IconMeme(url: list[x * 23 + y]["url"]));
       }
       rows.add(Row(children: row));
     }
