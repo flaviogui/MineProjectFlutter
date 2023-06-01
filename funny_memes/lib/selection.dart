@@ -11,19 +11,19 @@ class Selection extends StatefulWidget {
 }
 
 class _Selection extends State<Selection> {
-  List<Widget> items = [];
+  final ValueNotifier<List> tableStateNotifier = ValueNotifier([<Widget>[]]);
   @override
-  Widget build(BuildContext) {
+  Widget build(BuildContext context) {
     createItems();
-    /*   items.add(TextButton(
-        child: Text("apertar aqui"),
-        onPressed: () => setState(() {
-              createItems();
-            })));
-      */
     return Scaffold(
         appBar: const MyBar(),
-        body: SingleChildScrollView(child: Column(children: items)));
+        body: SingleChildScrollView(
+          child: ValueListenableBuilder(
+              valueListenable: tableStateNotifier,
+              builder: (_, value, __) {
+                return Column(children: value[0]);
+              }),
+        ));
   }
 
   Future<void> createItems() async {
@@ -36,7 +36,7 @@ class _Selection extends State<Selection> {
       }
       rows.add(Row(children: row));
     }
-    this.items.addAll(rows);
+    tableStateNotifier.value[0] = rows;
   }
 }
 
