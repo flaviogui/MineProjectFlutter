@@ -2,10 +2,11 @@ import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-final ValueNotifier<Api> api = ValueNotifier(Api());
+final Api api = Api();
 
 class Api{
-  List<dynamic> memes = [];
+  ValueNotifier<List> memes = ValueNotifier([{}]);
+  ValueNotifier<String> urlEdit = ValueNotifier("");
   String choiceUrl = "";
   String choiceId = "";
   
@@ -18,7 +19,34 @@ class Api{
     String jsonString = await http.read(uriGet);
     print(jsonString); 
     var retorno = jsonDecode(jsonString);
-    memes = retorno["data"]["memes"];
+    print(retorno["data"]["memes"]);
+    memes.value = retorno["data"]["memes"];
+  }
+
+  Future<void> getImage(one,second) async{
+    var url = Uri.https('api.imgflip.com', 'caption_image');
+    var response = await http.post(url, body: {
+      'template_id': choiceId,
+      'username': 'Flavinho',
+      'password':'flavio2001',
+      'text0':one,
+      'text1':second
+      });
+    var jsonString = jsonDecode(response.body);
+    print(jsonString); 
+    urlEdit.value = jsonString['data']['url'];
+  }
+
+  Future<void> getPersonImage(boxes) async{
+    var url = Uri.https('api.imgflip.com', 'caption_image');
+    var response = await http.post(url, body: {
+      'template_id': choiceId,
+      'username': 'Flavinho',
+      'password':'flavio2001',
+      });
+    var jsonString = jsonDecode(response.body);
+    print(jsonString); 
+    urlEdit.value = jsonString['data']['url'];
   }
 
 }
