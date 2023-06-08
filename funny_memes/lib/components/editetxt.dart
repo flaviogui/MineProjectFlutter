@@ -19,13 +19,14 @@ class _EditTextState extends State<EditText> {
         padding: EdgeInsets.all(4),
         margin: EdgeInsets.all(4),
         child: Column(children: [
-          MyTextField(hint: "insira o texto aqui", controler: widget.controler),
+          MyTextField(
+              hint: "INSIRA UM TEXTO AQUI", controler: widget.controler),
           Slider(
               value: widget.control.posX.toDouble(),
               divisions: 100,
               min: 0,
               max: api.choiceX.toDouble(),
-              label: "posição X: ${widget.control.posX} ",
+              label: "Posição X: ${widget.control.posX} ",
               onChanged: (value) {
                 setState(() {
                   widget.control.text = widget.controler.text;
@@ -37,7 +38,7 @@ class _EditTextState extends State<EditText> {
               divisions: 100,
               min: 0,
               max: api.choiceY.toDouble(),
-              label: "posição Y: ${widget.control.posY} ",
+              label: "Posição Y: ${widget.control.posY} ",
               onChanged: (value) {
                 setState(() {
                   widget.control.text = widget.controler.text;
@@ -51,7 +52,7 @@ class _EditTextState extends State<EditText> {
               max: 0xffffff,
               divisions: 0xffffff,
               label:
-                  "cor do texto: ${widget.control.textColor.toRadixString(16)}",
+                  "Cor do texto: ${widget.control.textColor.toRadixString(16)}",
               onChanged: (value) {
                 setState(() {
                   widget.control.text = widget.controler.text;
@@ -65,7 +66,7 @@ class _EditTextState extends State<EditText> {
               max: 0xffffff,
               divisions: 0xffffff,
               label:
-                  "cor da borda:${widget.control.borderColor.toRadixString(16)}",
+                  "Cor da borda:${widget.control.borderColor.toRadixString(16)}",
               onChanged: (value) {
                 setState(() {
                   widget.control.text = widget.controler.text;
