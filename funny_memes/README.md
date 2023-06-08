@@ -1,4 +1,4 @@
-# globe_earth
+# funny_memes
 
 A new Flutter project.
 
