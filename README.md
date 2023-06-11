@@ -12,6 +12,12 @@ Discentes envolvidos:
 
 <h1 align="center">Intruções para execução:</h1>
 
-**Primeiramente, clone o repositório:** https://github.com/flaviogui/MineProjectFlutter
+**Primeiramente, clone o repositório:** https://github.com/flaviogui/MineProjectFlutter.git
+
+**Após isso, direcione-se para o repositório com o comando:** cd MineProjectFlutter
+
+**Agora, instale às dependências, utilizando o comando:** flutter pub get
+
+**Por fim, é só rodar o App, com o comando:** flutter run
 
 
