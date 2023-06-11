@@ -1,3 +1,16 @@
 # MineProjectFlutter
 Repositorio destinado ao desenvolvimento de um mine projeto em flutter na disciplina de POO I.
-Discentes envolvidos no projeto: Isayan Deivid e Flávio Glaydson.
+
+- App: O funny_memes é um gerador de memes aleatórios e e atuais. 
+
+Discentes envolvidos:
+
+- Isayan Deivid (https://github.com/kolitero)
+- Flávio Glaydson (https://github.com/flaviogui)
+- API utilizada: (https://imgflip.com/api)
+
+<h1 align="center">Intruções para execução:</h1>
+
+**Primeiramente, clone o repositório:** https://github.com/flaviogui/MineProjectFlutter
+
+
