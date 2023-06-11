@@ -14,9 +14,9 @@ Discentes envolvidos:
 
 **Primeiramente, clone o repositório com o link:** https://github.com/flaviogui/MineProjectFlutter.git
 
-**Após isso, direcione-se para o repositório com o comando:**
+**Após isso, direcione-se para o projeto com o comando:**
 ```bash
-  cd MineProjectFlutter
+  cd funny_memes
 ```
 **Agora, instale às dependências, utilizando o comando:** 
 ```bash
