@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "editetxt.dart";
 
-class ControlerEdit{
+class ControlerEdit {
   final ValueNotifier<bool> person = ValueNotifier(false);
   final bottomControlerEdit = TextEditingController();
   bool edit = false;
@@ -11,14 +11,12 @@ class ControlerEdit{
   List<EditTextControler> textEditsValue = [];
   static final ControlerEdit _instace = ControlerEdit._internal();
 
-  factory ControlerEdit(){
+  factory ControlerEdit() {
     return _instace;
   }
-  ControlerEdit._internal() {
-    
-  }
+  ControlerEdit._internal();
 
-  void  reset(){
+  void reset() {
     textsNormal = [];
     person.value = false;
     bottomControlerEdit.text = '';
@@ -27,8 +25,7 @@ class ControlerEdit{
     textController = [];
   }
 
-  void addNormalText(TextEditingController text){
+  void addNormalText(TextEditingController text) {
     textsNormal.add(text);
   }
 }
-

@@ -6,7 +6,7 @@ class MyBar extends StatelessWidget implements PreferredSizeWidget {
   const MyBar({super.key, this.home = true});
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ class MyBar extends StatelessWidget implements PreferredSizeWidget {
         color: Colors.blue,
         child: Row(
           children: [
-            Spacer(),
+            const Spacer(),
             LogoName(),
-            Spacer(),
+            const Spacer(),
             PopupMenuButton(
                 onSelected: (value) {
                   if (value == 1) Navigator.pop(context);
@@ -24,12 +24,12 @@ class MyBar extends StatelessWidget implements PreferredSizeWidget {
                 },
                 itemBuilder: (BuildContext context) => [
                       const PopupMenuItem(
-                          child: Icon(Icons.arrow_back, color: Colors.black),
-                          value: 1),
+                          value: 1,
+                          child: Icon(Icons.arrow_back, color: Colors.black)),
                       if (home)
                         const PopupMenuItem(
-                            child: Icon(Icons.home, color: Colors.black),
-                            value: 2),
+                            value: 2,
+                            child: Icon(Icons.home, color: Colors.black)),
                     ]),
           ],
         ));
