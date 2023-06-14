@@ -96,7 +96,7 @@ class _EditPersonState extends State<EditPerson> {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: OutlinedButton(
-            child: const Text("adicionar texto personalizado"),
+            child: const Text("ADICIONAR TEXTO PERSONALIZADO"),
             onPressed: () {
               if (controlerEdit.textController.length < 20)
                 setState(() {
