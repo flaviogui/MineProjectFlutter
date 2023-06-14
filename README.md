@@ -26,4 +26,8 @@ Discentes envolvidos:
 ```bash
   flutter run
 ```
+**Não esqueça de selecionar uma opção para abrir na Web**
+```bash
+  Edge ou Chorme
+```
 
