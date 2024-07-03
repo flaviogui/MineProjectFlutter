@@ -19,7 +19,7 @@ class _Selection extends State<Selection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyBar(),
+        appBar: const MyBar(),
         body: ListView.builder(
             itemCount: 50,
             itemBuilder: (context, index) {
@@ -39,11 +39,11 @@ class _Selection extends State<Selection> {
 }
 
 class IconMeme extends StatelessWidget {
-  final id;
-  final url;
-  final index;
+  final String id;
+  final String url;
+  final int index;
   final controler = ControlerEdit();
-  IconMeme({super.key, this.id, this.url, this.index});
+  IconMeme({super.key,required this.id ,required this.url,required this.index});
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -65,14 +65,15 @@ class IconMeme extends StatelessWidget {
               child: Container(
                   child: url != ""
                       ? Hero(
+                          tag: id,
                           child: Container(
-                              margin: EdgeInsets.symmetric(vertical: 10),
+                              margin: const EdgeInsets.symmetric(vertical: 10),
                               height: 300,
                               width: MediaQuery.of(context).size.width / 2 - 20,
                               child: Image.network(value[index]["url"],
                                   fit: BoxFit.fill)),
-                          tag: id)
-                      : Loading()),
+                      )
+                      : const Loading()),
               onTap: () {
                 api.choiceX = x;
                 api.choiceY = y;
@@ -90,6 +91,7 @@ class Loading extends StatefulWidget {
   const Loading({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoadingState createState() => _LoadingState();
 }
 

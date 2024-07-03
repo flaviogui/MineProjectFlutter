@@ -6,6 +6,8 @@ import "../api.dart";
 class EditText extends StatefulWidget{
   final controler =  TextEditingController();
   final control = EditTextControler('',0,0,0x000000,0x000000,0,0);
+
+  EditText({super.key});
   @override
   State<EditText> createState() => _EditTextState();
 }
@@ -17,10 +19,10 @@ class _EditTextState extends State<EditText> {
       decoration:BoxDecoration(
         border:Border.all()
       ), 
-      height:450,
+      height:480,
       width:300,
-      padding:EdgeInsets.all(4),
-      margin:EdgeInsets.all(4),
+      padding:const EdgeInsets.all(4),
+      margin:const EdgeInsets.all(4),
       child:Column(
         children: [
           TextField(
@@ -30,7 +32,7 @@ class _EditTextState extends State<EditText> {
                   widget.control.text = str;
                 });
             },
-            decoration:InputDecoration(
+            decoration:const InputDecoration(
             hintText:'insira o texto aqui',
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(6))

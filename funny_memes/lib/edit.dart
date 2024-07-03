@@ -1,10 +1,14 @@
 import "package:flutter/material.dart";
 import "package:image_downloader_web/image_downloader_web.dart";
+import "package:image_downloader/image_downloader.dart";
 import "components/bar.dart";
 import "components/editetxt.dart";
 import "components/controleredit.dart";
 import "components/mytextfield.dart";
 import "api.dart";
+import "dart:io" show Platform;
+import "package:flutter/foundation.dart" show kIsWeb;
+import "package:permission_handler/permission_handler.dart";
 
 class Edit extends StatefulWidget {
   const Edit({super.key});
@@ -35,13 +39,15 @@ class _EditState extends State<Edit> {
                             controlerEdit.edit ? va : api.choiceUrl),
                       ),
                     )),
-                value ? EditPerson() : EditNormal()
+                value ? const EditPerson() : const EditNormal()
               ]));
         });
   }
 }
 
 class EditNormal extends StatefulWidget {
+  const EditNormal({super.key});
+
   @override
   State<EditNormal> createState() => _EditNormalState();
 }
@@ -63,7 +69,7 @@ class _EditNormalState extends State<EditNormal> {
               );
             }),
       ),
-      Buttons(),
+      const Buttons(),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: OutlinedButton(
@@ -84,6 +90,8 @@ class _EditNormalState extends State<EditNormal> {
 }
 
 class EditPerson extends StatefulWidget {
+  const EditPerson({super.key});
+
   @override
   State<EditPerson> createState() => _EditPersonState();
 }
@@ -98,21 +106,24 @@ class _EditPersonState extends State<EditPerson> {
         child: OutlinedButton(
             child: const Text("ADICIONAR TEXTO PERSONALIZADO"),
             onPressed: () {
-              if (controlerEdit.textController.length < 20)
+              if (controlerEdit.textController.length < 20) {
                 setState(() {
                   controlerEdit.textController.add(EditText());
                 });
+              }
             }),
       ),
       Column(
         children: controlerEdit.textController,
       ),
-      Buttons(),
+      const Buttons(),
     ]);
   }
 }
 
 class Buttons extends StatefulWidget {
+  const Buttons({super.key});
+
   @override
   State<Buttons> createState() => _ButtonsState();
 }
@@ -144,7 +155,16 @@ class _ButtonsState extends State<Buttons> {
       OutlinedButton(
           child: const Text("SALVA"),
           onPressed: () async {
-            WebImageDownloader.downloadImageFromWeb(api.urlEdit.value);
+            if(Platform.isAndroid){
+              var id;
+              var status = await Permission.manageExternalStorage.request();
+              if(status.isGranted){
+                id =  await ImageDownloader.downloadImage(api.urlEdit.value,destination: AndroidDestinationType.directoryDCIM);
+              }
+              print(id);
+            }else if(kIsWeb){
+              await WebImageDownloader.downloadImageFromWeb(api.urlEdit.value);
+            }
           }),
       const Spacer(flex: 7),
     ]);

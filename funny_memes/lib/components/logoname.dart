@@ -2,8 +2,8 @@ import "package:flutter_animate/flutter_animate.dart";
 import "package:flutter/material.dart";
 
 class LogoName extends StatefulWidget{
-  final nameSize;
-  LogoName({super.key,this.nameSize = 20});
+  final double nameSize;
+  const LogoName({super.key,this.nameSize = 20});
 
   @override
   State<StatefulWidget> createState() => _LogoName();
@@ -29,7 +29,7 @@ class _LogoName extends State<LogoName>{
             );
         }
       ).animate(
-        onPlay:(Controler) => Controler.repeat()
+        onPlay:(controler) => controler.repeat()
       )
         .custom(
         duration: 510.ms,

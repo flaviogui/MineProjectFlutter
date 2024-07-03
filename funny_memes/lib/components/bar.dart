@@ -15,7 +15,7 @@ class MyBar extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           children: [
             const Spacer(),
-            LogoName(),
+            const LogoName(),
             const Spacer(),
             PopupMenuButton(
                 onSelected: (value) {
