@@ -11,7 +11,9 @@ class Sobre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyBar(),
+      appBar: const MyBar(
+        home: false,
+      ),
       body: Column(children: [
         const Center(
           child: LogoName(

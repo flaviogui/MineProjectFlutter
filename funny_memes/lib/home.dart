@@ -23,12 +23,15 @@ class Home extends StatelessWidget {
             width: 200,
             child: GestureDetector(
               child: Hero(
-                child: Image.asset("assets/ui.jpeg"),
                 tag: "assd",
+                child: Image.asset("assets/ui.jpeg"),
               ),
               onTap: () => Navigator.pushNamed(context, "/sobre"),
             ),
-          )
+          ),
+          TextButton(
+              onPressed: (() => Navigator.pushNamed(context, '/login')),
+              child: Text("dev"))
         ]),
         backgroundColor: const Color(0xffffffff));
   }
