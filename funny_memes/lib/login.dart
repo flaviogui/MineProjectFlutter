@@ -22,9 +22,10 @@ class LoginState extends State<Login> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            "LOGIN",
-            style: TextStyle(fontSize: 25),
+          const LogoName(
+            nameSize: 25,
+            name: "LOGIN",
+            time: Duration.zero,
           ),
           const MyTextField(
             hint: "Usuário",
@@ -40,10 +41,10 @@ class LoginState extends State<Login> {
                 const TextSpan(text: 'NÃO TEM CONTA, CADASTRE '),
                 WidgetSpan(
                     child: GestureDetector(
-                  child: const Text(
-                    "AQUI",
-                    style: TextStyle(
-                        color: Color(0xffff0000), fontWeight: FontWeight.bold),
+                  child: const LogoName(
+                    name: "AQUI",
+                    nameSize: 16,
+                    time: Duration.zero,
                   ),
                   onTap: () => launchUrl(urlApi),
                 ))
