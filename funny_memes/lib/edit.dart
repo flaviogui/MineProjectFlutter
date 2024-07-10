@@ -155,15 +155,16 @@ class _ButtonsState extends State<Buttons> {
       OutlinedButton(
           child: const Text("SALVA"),
           onPressed: () async {
-            if(Platform.isAndroid){
+            if (kIsWeb) {
+              await WebImageDownloader.downloadImageFromWeb(api.urlEdit.value);
+            } else if (Platform.isAndroid) {
               var id;
               var status = await Permission.manageExternalStorage.request();
-              if(status.isGranted){
-                id =  await ImageDownloader.downloadImage(api.urlEdit.value,destination: AndroidDestinationType.directoryDCIM);
+              if (status.isGranted) {
+                id = await ImageDownloader.downloadImage(api.urlEdit.value,
+                    destination: AndroidDestinationType.directoryDCIM);
               }
               print(id);
-            }else if(kIsWeb){
-              await WebImageDownloader.downloadImageFromWeb(api.urlEdit.value);
             }
           }),
       const Spacer(flex: 7),

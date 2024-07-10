@@ -21,9 +21,13 @@ class Home extends StatelessWidget {
           SizedBox(
             height: 200,
             width: 200,
-            child: Image.asset(
-              "assets/ui.jpeg"
-),
+            child: GestureDetector(
+              child: Hero(
+                child: Image.asset("assets/ui.jpeg"),
+                tag: "assd",
+              ),
+              onTap: () => Navigator.pushNamed(context, "/sobre"),
+            ),
           )
         ]),
         backgroundColor: const Color(0xffffffff));
