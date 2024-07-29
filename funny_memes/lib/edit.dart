@@ -9,6 +9,7 @@ import "api.dart";
 import "dart:io" show Platform;
 import "package:flutter/foundation.dart" show kIsWeb;
 import "package:permission_handler/permission_handler.dart";
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Edit extends StatefulWidget {
   const Edit({super.key});
@@ -155,17 +156,14 @@ class _ButtonsState extends State<Buttons> {
       OutlinedButton(
           child: const Text("SALVA"),
           onPressed: () async {
-            if (kIsWeb) {
-              await WebImageDownloader.downloadImageFromWeb(api.urlEdit.value);
-            } else if (Platform.isAndroid) {
-              var id;
-              var status = await Permission.manageExternalStorage.request();
-              if (status.isGranted) {
-                id = await ImageDownloader.downloadImage(api.urlEdit.value,
-                    destination: AndroidDestinationType.directoryDCIM);
-              }
-              print(id);
-            }
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
+            var history = prefs.getStringList('history');
+            prefs.setStringList('history', [api.jsonmeme, ...?history]);
+            //
+            history = prefs.getStringList('history');
+            print(history);
+            await WebImageDownloader.downloadImageFromWeb(api.urlEdit.value);
           }),
       const Spacer(flex: 7),
     ]);
