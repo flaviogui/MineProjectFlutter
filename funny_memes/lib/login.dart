@@ -58,6 +58,7 @@ class LoginState extends State<Login> {
                     await SharedPreferences.getInstance();
                 print(await prefs
                     .setStringList('user', [user.text, password.text]));
+                Navigator.popAndPushNamed(context,"/");
               }
             },
             child: Text("ENTRAR"),

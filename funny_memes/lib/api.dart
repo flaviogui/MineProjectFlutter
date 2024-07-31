@@ -9,6 +9,8 @@ class Api {
   ValueNotifier<String> urlEdit = ValueNotifier("");
   String jsonmeme = "";
   String choiceUrl = "";
+  String apiUser = "";
+  String apiPassword = "";
   int choiceX = 0;
   int choiceY = 0;
   int choiceBox = 0;
@@ -28,8 +30,8 @@ class Api {
     var url = Uri.https('api.imgflip.com', 'caption_image');
     var body = {
       'template_id': choiceId,
-      'username': 'Flavinho',
-      'password': 'flavio2001',
+      'username': apiUser,
+      'password': apiPassword,
       'text0': 'teste',
       'text1': 'tets',
     };
@@ -65,8 +67,8 @@ class Api {
     var url = Uri.https('api.imgflip.com', 'caption_image');
     var body = {
       'template_id': choiceId,
-      'username': 'Flavinho',
-      'password': 'flavio2001',
+      'username': apiUser,
+      'password': apiPassword,
       'text0': 'teste',
       'text1': 'tets',
     };

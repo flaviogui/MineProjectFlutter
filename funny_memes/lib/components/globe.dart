@@ -1,5 +1,7 @@
 import"package:flutter_animate/flutter_animate.dart";
 import "package:flutter/material.dart";
+import "package:funny_memes/api.dart";
+import "package:shared_preferences/shared_preferences.dart";
 
 class Globe extends StatefulWidget {
   const Globe({super.key});
@@ -18,6 +20,17 @@ class _Globe extends State<Globe> {
               onPlay: (controler) => controler.repeat(),
             )
             .rotate(duration: const Duration(seconds: 3), curve: Curves.linear),
-        onTap: () => Navigator.pushNamed(context, "/selection"));
+        onTap: () async {
+                    final SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    var success =  prefs.getStringList('user');
+                    if(success != null){
+                      api.apiUser = success[0];
+                      api.apiPassword = success[1];
+                      Navigator.pushNamed(context, "/selection");
+                    }else{
+                      Navigator.pushNamed(context, '/login');
+                    }
+                });
   }
 }
