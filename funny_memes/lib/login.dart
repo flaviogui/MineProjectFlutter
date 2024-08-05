@@ -52,16 +52,12 @@ class LoginState extends State<Login> {
               };
               var response = await http.post(url, body: body);
               var jsonString = jsonDecode(response.body);
-              print("erro t5eachei");
               if (jsonString['success'] == true) {
                 final SharedPreferences prefs =
                     await SharedPreferences.getInstance();
-                print(await prefs
-                    .setStringList('user', [user.text, password.text]));
-                Navigator.popAndPushNamed(context,"/");
-              }
+                await prefs.setStringList('user', [user.text, password.text]).then((value) => Navigator.popAndPushNamed(context,"/"));              }
             },
-            child: Text("ENTRAR"),
+            child: const Text("ENTRAR"),
           ),
           Padding(
               padding: const EdgeInsets.all(20),

@@ -1,14 +1,10 @@
 import "package:flutter/material.dart";
 import "package:image_downloader_web/image_downloader_web.dart";
-import "package:image_downloader/image_downloader.dart";
 import "components/bar.dart";
 import "components/editetxt.dart";
 import "components/controleredit.dart";
 import "components/mytextfield.dart";
 import "api.dart";
-import "dart:io" show Platform;
-import "package:flutter/foundation.dart" show kIsWeb;
-import "package:permission_handler/permission_handler.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Edit extends StatefulWidget {
@@ -162,7 +158,6 @@ class _ButtonsState extends State<Buttons> {
             prefs.setStringList('history', [api.jsonmeme, ...?history]);
             //
             history = prefs.getStringList('history');
-            print(history);
             await WebImageDownloader.downloadImageFromWeb(api.urlEdit.value);
           }),
       const Spacer(flex: 7),

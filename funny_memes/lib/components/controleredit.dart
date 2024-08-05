@@ -24,6 +24,10 @@ class ControlerEdit {
     topControlerEdit.text = "";
     textController = [];
   }
+  void editMeme(values){
+    person.value = true;
+    textEditsValue = [...values];
+  }
 
   void addNormalText(TextEditingController text) {
     textsNormal.add(text);

@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:funny_memes/api.dart";
 import "package:shared_preferences/shared_preferences.dart";
 import "components/logoname.dart";
 import "components/globe.dart";
@@ -34,7 +33,7 @@ class Home extends StatelessWidget {
           TextButton(
               onPressed: (() => SharedPreferences.getInstance().then((value) => value.clear())
               ),
-              child: Text("dev"))
+              child: const Text("dev"))
         ]),
         backgroundColor: const Color(0xffffffff));
   }

@@ -20,9 +20,7 @@ class Api {
     Uri uriGet =
         Uri(scheme: "https", host: "api.imgflip.com", path: "get_memes");
     String jsonString = await http.read(uriGet);
-    print(jsonString);
     var retorno = jsonDecode(jsonString);
-    print(retorno["data"]["memes"]);
     memes.value = retorno["data"]["memes"];
   }
 
@@ -36,30 +34,23 @@ class Api {
       'text1': 'tets',
     };
     for (int i = 0; i < data.length; i++) {
-      print(data);
-      print(i);
       body.addAll({
         'boxes[$i][text]': data[i]['text'],
         'boxes[$i][color]': data[i]['color'],
         'boxes[$i][outline_color]': data[i]['outline_color']
       });
-      print("aaa");
       body.addAll({
         'boxes[$i][x]': data[i]['x'],
         'boxes[$i][y]': data[i]['y'],
       });
-      print("aaaa");
       body.addAll({
         'boxes[$i][width]': data[i]['width'],
         'boxes[$i][height]': data[i]['height']
       });
-      print('aaaaa');
     }
-    print(body);
     jsonmeme = jsonEncode(body);
     var response = await http.post(url, body: body);
     var jsonString = jsonDecode(response.body);
-    print(jsonString);
     urlEdit.value = jsonString['data']['url'];
   }
 
@@ -80,7 +71,6 @@ class Api {
     jsonmeme = jsonEncode(body);
     var response = await http.post(url, body: body);
     var jsonString = jsonDecode(response.body);
-    print(jsonString);
     urlEdit.value = jsonString['data']['url'];
   }
 }
