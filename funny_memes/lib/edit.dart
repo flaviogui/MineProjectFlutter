@@ -1,3 +1,5 @@
+import "dart:io";
+
 import "package:flutter/material.dart";
 import "package:image_downloader_web/image_downloader_web.dart";
 import "components/bar.dart";
@@ -134,6 +136,7 @@ class _ButtonsState extends State<Buttons> {
       OutlinedButton(
           child: const Text("EDITAR"),
           onPressed: () {
+            print("chegou aqui edit");
             if (!controlerEdit.person.value &&
                 controlerEdit.textsNormal.isNotEmpty) {
               controlerEdit.edit = true;

@@ -26,6 +26,7 @@ class Api {
 
   Future<void> getPersonImage(List<Map> data) async {
     var url = Uri.https('api.imgflip.com', 'caption_image');
+    print("chegou aqui image");
     var body = {
       'template_id': choiceId,
       'username': apiUser,
@@ -33,6 +34,7 @@ class Api {
       'text0': 'teste',
       'text1': 'tets',
     };
+    print("chegou aqui image 2");
     for (int i = 0; i < data.length; i++) {
       body.addAll({
         'boxes[$i][text]': data[i]['text'],
@@ -48,13 +50,22 @@ class Api {
         'boxes[$i][height]': data[i]['height']
       });
     }
-    jsonmeme = jsonEncode(body);
+    print("chegou aqui image 3");
     var response = await http.post(url, body: body);
+    print("chegou aqui image fim");
     var jsonString = jsonDecode(response.body);
+    print("tem condicao nao");
+    body.addAll({
+      'altura': api.choiceY.toString(),
+      'largura': api.choiceX.toString(),
+      'url': api.choiceUrl
+    });
+    jsonmeme = jsonEncode(body);
     urlEdit.value = jsonString['data']['url'];
   }
 
   Future<void> getImage(List<String> data) async {
+    print("chegou aqui ue");
     var url = Uri.https('api.imgflip.com', 'caption_image');
     var body = {
       'template_id': choiceId,
