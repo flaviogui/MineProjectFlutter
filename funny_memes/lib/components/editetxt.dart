@@ -5,11 +5,14 @@ import "../api.dart";
 
 class EditText extends StatefulWidget{
   final controler =  TextEditingController();
-  final control = EditTextControler('',0,0,0x000000,0x000000,0,0);
-
+  final EditTextControler control = EditTextControler('',0,0,0x000000,0x000000,0,0);
   EditText({super.key});
   @override
   State<EditText> createState() => _EditTextState();
+
+  void alter(EditTextControler target){
+    control.copy(target);
+  }
 }
 
 class _EditTextState extends State<EditText> {
@@ -40,14 +43,14 @@ class _EditTextState extends State<EditText> {
         )
           ),
           Slider(
-            value:widget.control.widht.toDouble(),
+            value:widget.control.width.toDouble(),
             divisions:api.choiceX,
             min:0,
             max:api.choiceX.toDouble(),
-            label:"largura: ${widget.control.widht} ",
+            label:"largura: ${widget.control.width} ",
             onChanged:(value){
               setState((){
-                widget.control.widht = value.toInt();
+                widget.control.width = value.toInt();
               });
             }
           ),
@@ -137,11 +140,20 @@ class EditTextControler{
   int posY;
   int borderColor;
   int textColor;
-  int widht;
+  int width;
   int height;
-  EditTextControler(this.text, this.posX, this.posY, this.borderColor, this.textColor,this.height,this.widht);
+  EditTextControler(this.text, this.posX, this.posY, this.borderColor, this.textColor,this.height,this.width);
 
   Map toMap(){
-    return {'text':text,'x':posX.toString(),'y':posY.toString(),'color':'#${textColor.toRadixString(16)}','outline_color':'#${borderColor.toRadixString(16)}','width':widht.toString(),'height':height.toString()};
+    return {'text':text,'x':posX.toString(),'y':posY.toString(),'color':'#${textColor.toRadixString(16)}','outline_color':'#${borderColor.toRadixString(16)}','width':width.toString(),'height':height.toString()};
+  }
+  void copy(EditTextControler target){
+    text = target.text;
+    posX = target.posX;
+    posY = target.posY;
+    borderColor = target.borderColor;
+    textColor = target.textColor;
+    width = target.width;
+    height = target.height;
   }
 }

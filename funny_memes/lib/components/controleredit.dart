@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "editetxt.dart";
+import "../api.dart";
 
 class ControlerEdit {
   final ValueNotifier<bool> person = ValueNotifier(false);
@@ -23,10 +24,6 @@ class ControlerEdit {
     edit = false;
     topControlerEdit.text = "";
     textController = [];
-  }
-  void editMeme(values){
-    person.value = true;
-    textEditsValue = [...values];
   }
 
   void addNormalText(TextEditingController text) {
