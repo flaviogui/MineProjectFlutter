@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 final Api api = Api();
 
 class Api {
@@ -26,6 +28,10 @@ class Api {
 
   Future<void> getPersonImage(List<Map> data) async {
     var url = Uri.https('api.imgflip.com', 'caption_image');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var datauser = prefs.getStringList('user');
+    var apiUser = datauser?[0];
+    var apiPassword = datauser?[1];
     print("chegou aqui image");
     var body = {
       'template_id': choiceId,
@@ -61,11 +67,19 @@ class Api {
       'url': api.choiceUrl
     });
     jsonmeme = jsonEncode(body);
+    print("url");
+    print(jsonString);
+    print(body);
     urlEdit.value = jsonString['data']['url'];
+    print("fim da url");
   }
 
   Future<void> getImage(List<String> data) async {
     print("chegou aqui ue");
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var datauser = prefs.getStringList('user');
+    var apiUser = datauser?[0];
+    var apiPassword = datauser?[1];
     var url = Uri.https('api.imgflip.com', 'caption_image');
     var body = {
       'template_id': choiceId,
@@ -79,9 +93,14 @@ class Api {
         'boxes[$i][text]': data[i].toUpperCase(),
       });
     }
-    jsonmeme = jsonEncode(body);
     var response = await http.post(url, body: body);
     var jsonString = jsonDecode(response.body);
     urlEdit.value = jsonString['data']['url'];
+    body.addAll({
+      'altura': api.choiceY.toString(),
+      'largura': api.choiceX.toString(),
+      'url': api.choiceUrl
+    });
+    jsonmeme = jsonEncode(body);
   }
 }

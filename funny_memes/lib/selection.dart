@@ -103,7 +103,7 @@ class _LoadingState extends State<Loading> with SingleTickerProviderStateMixin {
   void initState() {
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 5),
     )..addListener(() {
         setState(() {});
       });

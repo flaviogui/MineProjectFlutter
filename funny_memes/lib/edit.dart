@@ -1,6 +1,5 @@
-import "dart:io";
-
 import "package:flutter/material.dart";
+import "package:funny_memes/selection.dart";
 import "package:image_downloader_web/image_downloader_web.dart";
 import "components/bar.dart";
 import "components/editetxt.dart";
@@ -34,9 +33,13 @@ class _EditState extends State<Edit> {
                       tag: api.choiceId,
                       child: ValueListenableBuilder(
                         valueListenable: api.urlEdit,
-                        builder: (_, va, __) => Image.network(
-                            controlerEdit.edit ? va : api.choiceUrl),
-                      ),
+                        builder: (_, va, __) { 
+                          print("controler edit:${controlerEdit.edit}");
+                          print("api choice url:${api.choiceUrl}");
+                          print("api edit url:$va");
+                          return va != "" || !controlerEdit.recovery ? Image.network(
+                            controlerEdit.edit ? va : api.choiceUrl,
+                          ):const Loading();}),
                     )),
                 value ? const EditPerson() : const EditNormal()
               ]));
@@ -64,7 +67,7 @@ class _EditNormalState extends State<EditNormal> {
             itemBuilder: (context, index) {
               return MyTextField(
                 hint: "texto ${index + 1}",
-                controler: addField(index),
+                controler:addField(index),
               );
             }),
       ),
@@ -83,7 +86,10 @@ class _EditNormalState extends State<EditNormal> {
   }
 
   TextEditingController addField(index) {
-    controlerEdit.addNormalText(TextEditingController());
+    print(controlerEdit.recovery);
+    print("index $index");
+    print(controlerEdit.textsNormal.length);
+    controlerEdit.recovery ? controlerEdit.textsNormal[index] : controlerEdit.addNormalText(TextEditingController());
     return controlerEdit.textsNormal[index];
   }
 }
