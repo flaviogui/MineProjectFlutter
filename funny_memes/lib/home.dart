@@ -1,12 +1,7 @@
-import "dart:convert";
 import "package:flutter/material.dart";
-import "package:funny_memes/api.dart";
-import "package:funny_memes/components/controleredit.dart";
 import "package:funny_memes/func/loadhistory.dart";
-import "package:shared_preferences/shared_preferences.dart";
 import "components/logoname.dart";
 import "components/globe.dart";
-import "components/editetxt.dart";
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -118,9 +113,10 @@ class Home extends StatelessWidget {
                 //   }
                 //   Navigator.pushNamed(context, "/edit");
                 // });
-                loadHistory(0).then((value) => Navigator.pushNamed(context,"/edit"));
+                loadALL();
+                Navigator.pushNamed(context,"/history");
               },
-              child: Text("dev"))
+              child:const Text("dev"))
         ]),
         backgroundColor: const Color(0xffffffff));
   }

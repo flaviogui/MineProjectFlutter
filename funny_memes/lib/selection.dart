@@ -19,7 +19,7 @@ class _Selection extends State<Selection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const MyBar(),
+        appBar: const MyBar(history: true,),
         body: ListView.builder(
             itemCount: 50,
             itemBuilder: (context, index) {

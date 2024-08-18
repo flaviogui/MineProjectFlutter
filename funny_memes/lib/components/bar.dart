@@ -1,9 +1,11 @@
 import "package:flutter/material.dart";
+import "package:funny_memes/func/loadhistory.dart";
 import "logoname.dart";
 
 class MyBar extends StatelessWidget implements PreferredSizeWidget {
   final bool home;
-  const MyBar({super.key, this.home = true});
+  final bool history;
+  const MyBar({super.key, this.home = true,this.history = false});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -21,6 +23,10 @@ class MyBar extends StatelessWidget implements PreferredSizeWidget {
                 onSelected: (value) {
                   if (value == 1) Navigator.pop(context);
                   if (value == 2) Navigator.popAndPushNamed(context, "/");
+                  if (value == 3) {
+                    loadALL();
+                    Navigator.pushNamed(context, "/history");
+                    }
                 },
                 itemBuilder: (BuildContext context) => [
                       const PopupMenuItem(
@@ -30,6 +36,10 @@ class MyBar extends StatelessWidget implements PreferredSizeWidget {
                         const PopupMenuItem(
                             value: 2,
                             child: Icon(Icons.home, color: Colors.black)),
+                      if (history)
+                        const PopupMenuItem(
+                            value: 3,
+                            child: Icon(Icons.history , color: Colors.black)),
                     ]),
           ],
         ));

@@ -17,6 +17,8 @@ class ControlerEdit {
   }
   ControlerEdit._internal();
 
+  ControlerEdit.kk();
+
   void reset() {
     recovery = false;
     textsNormal = [];

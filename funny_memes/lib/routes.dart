@@ -1,3 +1,5 @@
+import "package:funny_memes/history.dart";
+
 import "home.dart";
 import "edit.dart";
 import "selection.dart";
@@ -9,5 +11,6 @@ final routes = {
   "/selection": (context) => const Selection(),
   "/edit": (context) => const Edit(),
   "/sobre": (context) => const Sobre(),
-  "/login": (context) => const Login()
+  "/login": (context) => const Login(),
+  "/history": (context) => const History(),
 };
