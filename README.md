@@ -1,5 +1,5 @@
 # MineProjectFlutter
-Repositorio destinado ao desenvolvimento de um mine projeto em flutter na disciplina de POO I.
+Repositorio destinado ao desenvolvimento de um mine projeto em flutter nas disciplinas de POO I e II.
 
 - App: O funny_memes é um gerador de memes aleatórios e e atuais.
 - API utilizada: (https://imgflip.com/api)
